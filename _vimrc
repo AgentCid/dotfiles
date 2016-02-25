@@ -15,8 +15,10 @@ autocmd BufReadPost *
 " maximize on startup
 autocmd VimEnter * simalt ~x
 
-let g:session_autoload = 'yes'
+let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
+let g:session_autosave_periodic = 5
+let g:session_autosave_silent = 1
 
 execute pathogen#infect()
 
@@ -97,3 +99,6 @@ set undofile
 set backupdir=$VIM\vimtmp,.
 set directory=$VIM\vimtmp,.
 set backup
+
+"Set default filetype for md files to markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
