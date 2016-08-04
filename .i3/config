@@ -153,7 +153,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        tray_output VIRTUAL1
+        #tray_output VIRTUAL1
 }
 
 focus_follows_mouse no
@@ -172,19 +172,27 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Monitor layout
-# rightmost
-workspace 1 output DP1 
-workspace 2 output VIRTUAL1 
-workspace 3 output VIRTUAL2
-# laptop
-workspace 4 output eDP1 
-# leftmost
-workspace 5 output VIRTUAL3 
-# above laptop
-workspace 6 output VGA1 
+# Brightness controls
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+
+# commented out while not hooked up to multiple monitors
+## Monitor layout
+## rightmost
+#workspace 1 output DP1 
+#workspace 2 output VIRTUAL1 
+#workspace 3 output VIRTUAL2
+## laptop
+#workspace 4 output eDP1 
+## leftmost
+#workspace 5 output VIRTUAL3 
+## above laptop
+#workspace 6 output VGA1 
 
 # The middle button over a titlebar kills the window
 #bindsym --release button2 kill
+
+exec --no-startup-id feh --bg-center --randomize ~/Pictures/wallpapers/*
+exec --no-startup-id nm-applet
 
 # vim:filetype=i3
