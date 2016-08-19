@@ -1,40 +1,40 @@
 set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
 
+"Turn mouse on for terminal too
+set mouse=a
 set mousemodel=popup
 
-"set diffexpr=MyDiff()
-"function MyDiff()
-"  let opt = '-a --binary '
-"  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-"  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-"  let arg1 = v:fname_in
-"  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-"  let arg2 = v:fname_new
-"  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-"  let arg3 = v:fname_out
-"  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-"  let eq = ''
-"  if $VIMRUNTIME =~ ' '
-"    if &sh =~ '\<cmd'
-"      let cmd = '""' . $VIMRUNTIME . '\diff"'
-"      let eq = '"'
-"    else
-"      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-"    endif
-"  else
-"    let cmd = $VIMRUNTIME . '\diff'
-"  endif
-"  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-"endfunction
+" When editing a file, always jump to the last known cursor position.
+autocmd BufReadPost *
+\ if line("'\"") > 1 && line("'\"") <= line("$") |
+\   exe "normal! g`\"" |
+\ endif
 
-"Personal Settings 
+"Set up autosave settings for vim-session
+let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
+let g:session_autosave_periodic = 5
+let g:session_autosave_silent = 1
+let g:session_directory = "~/.vim"
+
+"Fix block cursor when using ssh and cygwin
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
+"Fix vim not knowing how to use fish
+if &shell =~# 'fish$'
+    set shell=bash
+endif
+
 execute pathogen#infect()
 
 syntax on
 colorscheme hybrid
+
+"Fix weird light background in ssh session
+set background=dark
 
 if has('gui_running')
     set guifont=Lucida\ Console\ Semi-Condensed\ 8
@@ -47,6 +47,12 @@ set incsearch
 set ignorecase
 set smartcase
 set nohlsearch
+
+set history=500
+set ruler
+set showcmd
+set autoindent
+set backspace=indent,eol,start
 
 set noswapfile
 
@@ -96,39 +102,6 @@ let mapleader=","
 
 cd $HOME
 
-"Save session on exit, and restore on start
-set sessionoptions-=options
-fu! SaveSess()
-    if argc() == 0
-        execute 'mksession! ' . $HOME . '/.session.vim'
-    endif
-endfunction
-
-fu! RestoreSess()
-    if argc() == 0
-        if filereadable($HOME . '/.session.vim')
-            execute 'so ' . $HOME . '/.session.vim'
-        endif
-    endif
-endfunction
-
-autocmd VimLeave * call SaveSess()
-autocmd VimEnter * call RestoreSess()
-
-"Folding
-
-set foldmethod=syntax
-set foldlevelstart=99
-
-let javaScript_fold=1         " JavaScript
-let perl_fold=1               " Perl
-let php_folding=1             " PHP
-let r_syntax_folding=1        " R
-let ruby_fold=1               " Ruby
-let sh_fold_enabled=1         " sh
-let vimsyn_folding='af'       " Vim script
-let xml_syntax_folding=1      " XML
-
 "Persistent undo
 set undodir=~/.vim/undodir
 set undofile
@@ -136,3 +109,10 @@ set undofile
 "Swap files
 set backupdir=~/.vim/vimtmp,.
 set directory=~/.vim/vimtmp,.
+set backup
+
+"Fix background colors being wonky
+set t_ut=
+
+"Set default filetype for md files to markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
