@@ -30,3 +30,33 @@ XTerm*color7: #707880
 XTerm*color15: #C5C8C6
 
 XTerm*allowBoldFonts: false
+
+
+UXTerm*background: #1D1F21
+UXTerm*foreground: #C5C8C6
+! black
+UXTerm*color0: #282A2E
+UXTerm*color8: #373B41
+! red
+UXTerm*color1: #A54242
+UXTerm*color9: #CC6666
+! green
+UXTerm*color2: #8C9440
+UXTerm*color10: #B5BD68
+! yellow
+UXTerm*color3: #DE935F
+UXTerm*color11: #F0C674
+! blue
+UXTerm*color4: #5F819D
+UXTerm*color12: #81A2BE
+! magenta
+UXTerm*color5: #85678F
+UXTerm*color13: #B294BB
+! cyan
+UXTerm*color6: #5E8D87
+UXTerm*color14: #8ABEB7
+! white
+UXTerm*color7: #707880
+UXTerm*color15: #C5C8C6
+
+UXTerm*allowBoldFonts: false
