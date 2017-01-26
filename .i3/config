@@ -203,5 +203,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 
 exec --no-startup-id feh --bg-center --randomize ~/Pictures/wallpapers/*
 exec --no-startup-id nm-applet
+exec --no-startup-id compton
 
 # vim:filetype=i3
