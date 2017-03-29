@@ -2,4 +2,6 @@ xrandr --output VIRTUAL1 --off --output eDP1 --mode 1920x1080 --pos 0x1920 --rot
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
+
 exec i3
