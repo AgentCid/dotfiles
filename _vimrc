@@ -88,6 +88,8 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
 let mapleader=","
+"'Super-search': search for the current field in double quotes
+nnoremap <leader>/ yi"/<C-r>"<cr>
 
 cd C:\Users\awhittington\Documents
 
@@ -102,3 +104,18 @@ set backup
 
 "Set default filetype for md files to markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+"lightline.vim configuration
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'filetype' ] ]
+    \ },
+    \ 'inactive': {
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'filetype' ] ]
+    \ },
+    \ }
